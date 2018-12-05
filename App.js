@@ -1,11 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import CameraTest  from './components/CameraTest'
+import CameraTest2 from './components/CameraTest2'
 
-export default class App extends React.Component {
+export default class App extends Component {
+  constructor(props){
+    super(props)
+  }  
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <CameraTest2 />
       </View>
     );
   }
@@ -13,9 +18,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
