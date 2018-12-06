@@ -3,7 +3,7 @@ export const CHANGE_FLASH = 'CHANGE_FLASH'
 export const CHANGE_AUTOFOCUS = 'CHANGE_AUTOFOCUS'
 export const CHANGE_TYPE = 'CHANGE_TYPE'
 export const CHANGE_WHITE_BALANCE = 'CHANGE_WHITE_BALANCE'
-export const START_RECORDING = 'START_RECORDING'
+export const CHANGE_RECORDING = 'CHANGE_RECORDING'
 
 export const changeZoom = (newZoomValue) => ({
     type: CHANGE_ZOMM,
@@ -30,6 +30,10 @@ export const changeWhiteBalance = (newWhiteBalance) => ({
   });
 
 export const startRecording = () => ({
-    type: START_RECORDING
+    type: CHANGE_RECORDING
+})
+
+export const endRecording = () => ({
+  type: CHANGE_RECORDING
 })
 

@@ -1,11 +1,12 @@
-import { SAVE_PICTURE, SAVE_VIDEO, START_RECORDING } from '../actions/cameraSettingsActions'
+import { SAVE_PICTURE, SAVE_VIDEO } from '../actions/cameraPicturesAndVideoActions'
 import { initialStatePhotosandVideos } from './initialState'
 import { getLastValidId } from '../utils/arrayUtils'
 
 
-const cameraSettingsReducer = (state = initialStatePhotosandVideos, action) => {
+const photosAndVideosReducer = (state = initialStatePhotosandVideos, action) => {
     switch (action.type) {
         case SAVE_PICTURE: {
+            console.log("llege al reducer")
             return {
                 ...state,
                  photos: [...state.photos,
@@ -27,8 +28,10 @@ const cameraSettingsReducer = (state = initialStatePhotosandVideos, action) => {
                        ] 
             }
         }                    
-        default:
+        default: {
             return state;
+        }
+            
     }
 };
-export default cameraSettingsReducer;
+export default photosAndVideosReducer;

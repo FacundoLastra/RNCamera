@@ -1,4 +1,4 @@
-import { CHANGE_ZOMM, CHANGE_FLASH, CHANGE_AUTOFOCUS, CHANGE_TYPE, CHANGE_WHITE_BALANCE, START_RECORDING} from '../actions/cameraSettingsActions'
+import { CHANGE_ZOMM, CHANGE_FLASH, CHANGE_AUTOFOCUS, CHANGE_TYPE, CHANGE_WHITE_BALANCE, CHANGE_RECORDING} from '../actions/cameraSettingsActions'
 import { initialStateCameraSettings } from './initialState'
  
 const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
@@ -16,10 +16,10 @@ const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
             }
         }
         case CHANGE_AUTOFOCUS:{
-            let oldValue = state.autoFocus;
+            let newValue = state.autoFocus === 'on' ? 'off' : 'on';
             return {
                 ...state,
-                autoFocus: !oldValue
+                autoFocus: newValue
             }
         }
         case CHANGE_TYPE: {
@@ -34,7 +34,7 @@ const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
                 whiteBalance: action.payload
             }
         }
-        case START_RECORDING: {
+        case CHANGE_RECORDING: {
             let oldValue = state.isRecording;
             return {
                 ...state,

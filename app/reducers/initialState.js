@@ -7,10 +7,12 @@ import { RNCamera } from 'react-native-camera';
     type: 'back', ///if is the back camera or the front camera
     whiteBalance: 'auto',
     isRecording: false,
+    ratio: '16:9',
+    depth: 0,
     recordOptions: {
         mute: false,
         maxDuration: 5,
-        quality: RNCamera.Constants.VideoQuality["288p"],
+        quality: RNCamera.Constants.VideoQuality["480p"],
         }
 };
 
