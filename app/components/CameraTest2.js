@@ -128,7 +128,6 @@ export default class CameraTest2 extends React.Component {
 
   onFacesDetected = ({ faces }) =>{
       this.setState({ faces })
-       console.log(faces);
     };
   onFaceDetectionError = state => console.warn('Faces detection error:', state);
 
