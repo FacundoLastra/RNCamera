@@ -41,6 +41,16 @@ export default class PhotosAndVideos extends React.Component {
     },
     isRecording: false
   };
+  
+  componentDidMount() {
+    const { navigation } = this.props;
+    navigation.addListener('willFocus', () =>
+      this.setState({ focusedScreen: true })
+    );
+    navigation.addListener('willBlur', () =>
+      this.setState({ focusedScreen: false })
+    );
+  }
 
   getRatios = async function() {
     const ratios = await this.camera.getSupportedRatios();
@@ -327,7 +337,16 @@ export default class PhotosAndVideos extends React.Component {
   }
 
   render() {
-    return <View style={styles.container}>{this.renderCamera()}</View>;
+    const { hasCameraPermission, focusedScreen } = this.state;
+    if (hasCameraPermission === null) {
+        return <View />;
+      } else if (hasCameraPermission === false) {
+        return <Text>No access to camera</Text>;
+      } else if (focusedScreen){
+        return <View style={styles.container}>{this.renderCamera()}</View>;
+      } else {
+        return <View />;
+      }
   }
 }
 
