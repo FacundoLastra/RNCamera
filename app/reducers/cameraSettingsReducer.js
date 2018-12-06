@@ -1,4 +1,4 @@
-import { CHANGE_ZOMM, CHANGE_FLASH, CHANGE_AUTOFOCUS, CHANGE_TYPE, CHANGE_WHITE_BALANCE} from '../actions/CameraSettingsActions'
+import { CHANGE_ZOMM, CHANGE_FLASH, CHANGE_AUTOFOCUS, CHANGE_TYPE, CHANGE_WHITE_BALANCE, START_RECORDING} from '../actions/cameraSettingsActions'
 import { initialStateCameraSettings } from './initialState'
  
 const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
@@ -16,7 +16,7 @@ const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
             }
         }
         case CHANGE_AUTOFOCUS:{
-            oldValue = state.autoFocus;
+            let oldValue = state.autoFocus;
             return {
                 ...state,
                 autoFocus: !oldValue
@@ -33,9 +33,16 @@ const cameraSettingsReducer = (state = initialStateCameraSettings, action) => {
                 ...state,
                 whiteBalance: action.payload
             }
+        }
+        case START_RECORDING: {
+            let oldValue = state.isRecording;
+            return {
+                ...state,
+                isRecording: !oldValue
+            }
         }                
         default:
             return state;
     }
 };
-export default timelineForUserReducer;
+export default cameraSettingsReducer;

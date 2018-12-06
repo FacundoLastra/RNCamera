@@ -1,16 +1,10 @@
 import { combineReducers } from 'redux';
-import timeLineReducer from './timeLineReducer'
-import trendsReducer from './trendsReducer'
-import searchTweetsReducer from './searchTweetsReducer'
-import settingsReducer from './settingsReducer'
-import timelineForUserReducer  from './timelineForUserReducer'
+import  cameraSettingsReducer   from './cameraSettingsReducer'
+import  photosAndVideosReducer  from './photosAndVideosReducer'
 
 const AppReducer = combineReducers({
-  timeLineReducer,
-  searchTweetsReducer,
-  trendsReducer,
-  settingsReducer,
-  timelineForUserReducer  
+  cameraSettingsReducer,
+  photosAndVideosReducer  
 });
 
 export default AppReducer;

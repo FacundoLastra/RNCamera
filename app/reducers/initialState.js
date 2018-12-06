@@ -1,7 +1,7 @@
 import { RNCamera } from 'react-native-camera';
  
  const initialStateCameraSettings = { 
-    flash: 'off',
+    flash: 'auto',
     zoom: 0,
     autoFocus: 'on',
     type: 'back', ///if is the back camera or the front camera
