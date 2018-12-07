@@ -10,15 +10,6 @@ import SecondIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ThirdIcon from 'react-native-vector-icons/AntDesign'
 import FourIcon from 'react-native-vector-icons/Entypo'
 
-const tabBarOptions = Platform.OS === 'ios' ?
-{
-    showLabel: true
-} : {
-    showIcon: true,
-    showLabel: true
-}
-
-
 const TabNavigator = createBottomTabNavigator({
     PhotosAndVideos:{ 
           screen: PhotosAndVideos,
