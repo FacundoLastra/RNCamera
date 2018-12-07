@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, Image, Dimensions} from 'react-native';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;

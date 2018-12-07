@@ -3,9 +3,6 @@ import {StyleSheet, View, Dimensions} from 'react-native';
 
 import Video from 'react-native-video';
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
 export default class MyListVideo extends PureComponent {
     constructor(props){
       super(props)

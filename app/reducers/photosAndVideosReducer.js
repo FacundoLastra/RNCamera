@@ -6,7 +6,6 @@ import { getLastValidId } from '../utils/arrayUtils'
 const photosAndVideosReducer = (state = initialStatePhotosandVideos, action) => {
     switch (action.type) {
         case SAVE_PICTURE: {
-            console.log("llege al reducer")
             return {
                 ...state,
                  photos: [...state.photos,

@@ -3,7 +3,6 @@ import { StyleSheet, Text, View} from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { connect } from 'react-redux';
 import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoom, startRecording, endRecording } from '../actions/cameraSettingsActions'
-import { savePicture, saveVideo } from '../actions/cameraPicturesAndVideoActions'
 import CameraBottons from '../components/CameraBottons'
 
 const flashModeOrder = {
