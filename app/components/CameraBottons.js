@@ -4,9 +4,6 @@ import Icon from 'react-native-vector-icons/Foundation';
 import FlipIcon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-
-
 export default class CameraBottons extends React.Component {
     constructor(props){
         super(props)
@@ -44,6 +41,32 @@ export default class CameraBottons extends React.Component {
         this.props.onTakeVideo()
     }
     render() {
+        let photoBotton = <View />
+        let videoBotton = <View />
+        if( this.props.displayCaptureBottoms ) {
+            photoBotton = <TouchableOpacity
+                            style={[styles.flipButton, styles.recButtom]}
+                            onPress={this.props.cameraSettings.isRecording ? () => {} : this.handleTakeVideo}
+                          >
+                                {
+                                this.props.cameraSettings.isRecording ?
+                                <Text style={styles.flipText}> Stop </Text>
+                                :
+                                <Icon name="record" size={30} color="#ffffff" />
+                                }
+                            </TouchableOpacity>
+
+            videoBotton =  <TouchableOpacity
+                                style={[styles.flipButton, styles.picButton]}
+                                onPress={this.handleTakePicture}
+                            >          
+                                <FlipIcon name="ios-aperture" size={26} color="#ffffff" />
+                            </TouchableOpacity>
+                            
+                                
+                                
+                            
+        }
         return(
             <View style={styles.container}>
                 <View
@@ -76,16 +99,17 @@ export default class CameraBottons extends React.Component {
                 >
                 </View>
                 <View
-                style={{
-                    flex: 0.2,
-                    backgroundColor: 'transparent',
-                    flexDirection: 'row',
-                    alignSelf: 'flex-end',
-                }}
+                    style={{
+                        flex: 0.2,
+                        backgroundColor: 'transparent',
+                        flexDirection: 'row',
+                        alignSelf: 'flex-end',
+                    }}
                 >
+                   
                     <TouchableOpacity
                         style={[styles.flipButton, { flex: 0.1, alignSelf: 'flex-end', justifyContent: 'flex-start' }]}
-                        onPress={this.handleZoomIn)}
+                        onPress={this.handleZoomIn}
                     >
                         <MaterialIcon name="plus" size={32} color="#ffffff" />
                     </TouchableOpacity>
@@ -102,23 +126,10 @@ export default class CameraBottons extends React.Component {
                     <MaterialIcon name="image-filter-center-focus" size={25} color="#ffffff" />          
                         <Text style={styles.flipText}> {this.props.cameraSettings.autoFocus} </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.flipButton, styles.recButtom]}
-                        onPress={this.props.cameraSettings.isRecording ? () => {} : this.handleTakeVideo}
-                    >
-                        {
-                        this.props.cameraSettings.isRecording ?
-                        <Text style={styles.flipText}> Stop </Text>
-                        :
-                        <Icon name="record" size={30} color="#ffffff" />
-                        }
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.flipButton, styles.picButton]}
-                        onPress={this.handleTakePicture}
-                    >          
-                        <FlipIcon name="ios-aperture" size={26} color="#ffffff" />
-                    </TouchableOpacity>
+                    
+                    {photoBotton}
+                    {videoBotton}
+                    
                 </View>
             </View>
         )
@@ -131,7 +142,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingTop: 10,
-      backgroundColor: '#000',
+      backgroundColor: 'transparent'
     },
     navigation: {
       flex: 1,
