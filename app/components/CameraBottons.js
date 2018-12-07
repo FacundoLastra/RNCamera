@@ -1,8 +1,12 @@
 import React,{Component} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Slider } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Slider, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation';
 import FlipIcon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+function isObject (value) {
+    return value && typeof value === 'object' && value.constructor === Object;
+}
 
 export default class CameraBottons extends React.Component {
     constructor(props){
@@ -15,6 +19,7 @@ export default class CameraBottons extends React.Component {
         this.handleFocus = this.handleFocus.bind(this);
         this.handleTakePicture = this.handleTakePicture.bind(this);
         this.handleTakeVideo = this.handleTakeVideo.bind(this);
+        this.handleGoToGallery = this.handleGoToGallery.bind(this);
     }
     handleFlip() {
         this.props.onFlip()
@@ -40,9 +45,13 @@ export default class CameraBottons extends React.Component {
     handleTakeVideo() {
         this.props.onTakeVideo()
     }
+    handleGoToGallery(){
+        this.props.onGoToGallery()
+    }
     render() {
         let photoBotton = <View />
         let videoBotton = <View />
+        let photoPreview = <View />
         if( this.props.displayCaptureBottoms ) {
             photoBotton = <TouchableOpacity
                             style={[styles.flipButton, styles.recButtom]}
@@ -62,7 +71,18 @@ export default class CameraBottons extends React.Component {
                             >          
                                 <FlipIcon name="ios-aperture" size={26} color="#ffffff" />
                             </TouchableOpacity>
-                            
+            if(isObject(this.props.previewPhoto)){
+                photoPreview = <TouchableOpacity
+                                style={[styles.flipButton, styles.picButton, styles.transparent]}
+                                onPress={this.handleGoToGallery}
+                                >          
+                                    <Image
+                                        style={styles.photoDimension}
+                                        source={{uri: this.props.previewPhoto.photo.uri}}
+                                        resizeMode = 'cover'
+                                    />
+                                </TouchableOpacity>
+            }     
                                 
                                 
                             
@@ -129,6 +149,7 @@ export default class CameraBottons extends React.Component {
                     
                     {photoBotton}
                     {videoBotton}
+                    {photoPreview}
                     
                 </View>
             </View>
@@ -184,4 +205,11 @@ const styles = StyleSheet.create({
     row: {
       flexDirection: 'row',
     },
+    photoDimension: {
+        width: 70,
+        height: 50
+    },
+    transparent: {
+        backgroundColor: 'transparent'
+    }
   });

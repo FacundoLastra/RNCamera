@@ -36,6 +36,7 @@ class PhotosAndVideos extends React.Component {
     this.zoomIn = this.zoomIn.bind(this)
     this.takePicture = this.takePicture.bind(this)
     this.takeVideo = this.takeVideo.bind(this)
+    this.goToGallery = this.goToGallery.bind(this)
 
   }
   
@@ -102,7 +103,9 @@ class PhotosAndVideos extends React.Component {
       }
     }
   }
-
+  goToGallery() {
+    this.props.navigation.navigate('Gallery')
+  }
   
 
   renderCamera() { 
@@ -135,6 +138,8 @@ class PhotosAndVideos extends React.Component {
           onTakeVideo = {this.takeVideo}
           cameraSettings = {this.props.cameraSettings} 
           displayCaptureBottoms = {true} 
+          previewPhoto={this.props.photos[this.props.photos.length - 1]}
+          onGoToGallery={this.goToGallery}
         />
       </RNCamera>
     );
@@ -155,7 +160,9 @@ class PhotosAndVideos extends React.Component {
 }
 function mapStateToProps(state, props) {
     return {
-        cameraSettings: state.cameraSettingsReducer
+        cameraSettings: state.cameraSettingsReducer,
+        photos: state.photosAndVideosReducer.photos
+        
     }
 }
 //Connect everything

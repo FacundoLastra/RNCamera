@@ -37,8 +37,9 @@ const myIcon = (<Icon name="image" size={30} color="#900" />)
     render() {
         let listView = <View/>
         if(this.state.viewSelected === 'images'){
+            let photosArray = this.props.photos;
             listView = <FlatList
-                        data={this.props.photos}
+                        data={photosArray.reverse()}
                         keyExtractor={ (item) => item.id.toString()}
                         renderItem={this.renderItemImages}
                      />
