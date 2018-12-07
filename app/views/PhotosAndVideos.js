@@ -4,12 +4,7 @@ import { RNCamera } from 'react-native-camera';
 import { connect } from 'react-redux';
 import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoom, startRecording, endRecording } from '../actions/cameraSettingsActions'
 import { savePicture, saveVideo } from '../actions/cameraPicturesAndVideoActions'
-import Icon from 'react-native-vector-icons/Foundation';
-import FlipIcon from 'react-native-vector-icons/Ionicons';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CameraBottons from '../components/CameraBottons'
-
-const landmarkSize = 2;
 
 const flashModeOrder = {
   off: 'on',

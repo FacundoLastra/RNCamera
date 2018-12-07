@@ -6,8 +6,6 @@ import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoo
 import { savePicture, saveVideo } from '../actions/cameraPicturesAndVideoActions'
 import CameraBottons from '../components/CameraBottons'
 
-const landmarkSize = 2;
-
 const flashModeOrder = {
   off: 'on',
   on: 'auto',
@@ -28,7 +26,7 @@ class BarScann extends React.Component {
     super(props)
       this.state = {
         focusedScreen: true,
-        faces: []
+        barcode: []
       }
     this.toggleFacing = this.toggleFacing.bind(this)
     this.toggleFlash = this.toggleFlash.bind(this)
@@ -36,6 +34,9 @@ class BarScann extends React.Component {
     this.toggleFocus = this.toggleFocus.bind(this)
     this.zoomOut = this.zoomOut.bind(this)
     this.zoomIn = this.zoomIn.bind(this)
+    this.onBarCodeDetected = this.onBarCodeDetected.bind(this)
+    this.renderBarCodes = this.renderBarCodes.bind(this)
+    this.renderBarCode = this.renderBarCode.bind(this)
   }
   
   
@@ -77,7 +78,34 @@ class BarScann extends React.Component {
     this.props.dispatch(changeZoom(newZoom))
   }
 
+  ///barCodeDetection
 
+  onBarCodeDetected = ( barcodeEvent ) =>{
+    this.setState({ barcode: barcodeEvent.barcodes })
+  };
+
+  renderBarCode({type, data }) {
+    return (
+      <View key={data} style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <Text style={{color:'#ffffff'}}>Type: {type}</Text>
+        <Text style={{color:'#ffffff'}}>Data: {data}</Text>
+      </View>
+    )
+  }
+
+  renderBarCodes() {
+    let barcode = ''
+    if (Array.isArray(this.state.barcode)){
+      barcode = this.state.barcode.map(this.renderBarCode)
+    }else{
+      barcode = this.renderBarCode(this.state.barcode)
+    }    
+    return (
+      <View style={styles.barCodeContainer} pointerEvents="none">
+          {barcode} 
+      </View>
+    );
+  }
   
 
   renderCamera() { 
@@ -96,9 +124,7 @@ class BarScann extends React.Component {
         whiteBalance={this.props.cameraSettings.whiteBalance}
         ratio={this.props.cameraSettings.ratio}
         focusDepth={this.props.cameraSettings.depth}
-        faceDetectionLandmarks={RNCamera.Constants.FaceDetection.Landmarks.all}
-        onFacesDetected={this.onFacesDetected}
-        onFaceDetectionError={this.onFaceDetectionError}
+        onGoogleVisionBarcodesDetected={ this.onBarCodeDetected }
         permissionDialogTitle={'Permission to use camera'}
         permissionDialogMessage={'We need your permission to use your camera phone'}
       >    
@@ -114,6 +140,7 @@ class BarScann extends React.Component {
           cameraSettings = {this.props.cameraSettings}  
           displayCaptureBottoms = {false}
         />
+        {this.renderBarCodes()}
       </RNCamera>
     );
   }
@@ -145,7 +172,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     backgroundColor: '#000'
-  }
+  },
+  barCodeContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    top: 0,
+  },
   })
 
   
