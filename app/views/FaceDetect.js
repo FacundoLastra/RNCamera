@@ -5,24 +5,10 @@ import { connect } from 'react-redux';
 import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoom, startRecording, endRecording } from '../actions/cameraSettingsActions'
 import { savePicture, saveVideo } from '../actions/cameraPicturesAndVideoActions'
 import CameraBottons from '../components/CameraBottons'
+import { flashModeOrder, wbOrder } from '../utils/cameraConst' 
 
 const landmarkSize = 2;
 
-const flashModeOrder = {
-  off: 'on',
-  on: 'auto',
-  auto: 'torch',
-  torch: 'off',
-};
-
-const wbOrder = {
-  auto: 'sunny',
-  sunny: 'cloudy',
-  cloudy: 'shadow',
-  shadow: 'fluorescent',
-  fluorescent: 'incandescent',
-  incandescent: 'auto',
-};
 class FaceDetect extends React.Component {
   constructor(props){
     super(props)
@@ -36,9 +22,6 @@ class FaceDetect extends React.Component {
     this.toggleFocus = this.toggleFocus.bind(this)
     this.zoomOut = this.zoomOut.bind(this)
     this.zoomIn = this.zoomIn.bind(this)
-    this.takePicture = this.takePicture.bind(this)
-    this.takeVideo = this.takeVideo.bind(this)
-
   }
   
   
@@ -78,31 +61,6 @@ class FaceDetect extends React.Component {
   zoomIn() {
     const newZoom = this.props.cameraSettings.zoom + 0.1 > 1 ? 1 : this.props.cameraSettings.zoom + 0.1;
     this.props.dispatch(changeZoom(newZoom))
-  }
-
-  takePicture = async function() {
-    if (this.camera) {
-      this.camera.takePictureAsync()
-      .then( (data) => {
-        this.props.dispatch(savePicture(data))
-      });
-    }
-  };
-
-  takeVideo = async function() {
-    if (this.camera) {
-      try {
-        const promise = this.camera.recordAsync(this.props.cameraSettings.recordOptions);
-        if (promise) {
-          this.props.dispatch(startRecording());
-          const data = await promise;
-          this.props.dispatch(endRecording())
-          this.props.dispatch(saveVideo(data))
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    }
   }
 
   ///face detection funtions
@@ -214,8 +172,6 @@ renderLandmarks() {
           onZoomOut = {this.zoomOut}
           onZoomIn = {this.zoomIn}
           onFocus = {this.toggleFocus}
-          onTakePicture = {this.takePicture}
-          onTakeVideo = {this.takeVideo}
           cameraSettings = {this.props.cameraSettings}  
           displayCaptureBottoms = {false}
         />

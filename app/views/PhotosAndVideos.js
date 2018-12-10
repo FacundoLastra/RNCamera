@@ -5,22 +5,7 @@ import { connect } from 'react-redux';
 import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoom, startRecording, endRecording } from '../actions/cameraSettingsActions'
 import { savePicture, saveVideo } from '../actions/cameraPicturesAndVideoActions'
 import CameraBottons from '../components/CameraBottons'
-
-const flashModeOrder = {
-  off: 'on',
-  on: 'auto',
-  auto: 'torch',
-  torch: 'off',
-};
-
-const wbOrder = {
-  auto: 'sunny',
-  sunny: 'cloudy',
-  cloudy: 'shadow',
-  shadow: 'fluorescent',
-  fluorescent: 'incandescent',
-  incandescent: 'auto',
-};
+import { flashModeOrder, wbOrder } from '../utils/cameraConst' 
 
 class PhotosAndVideos extends React.Component {
   constructor(props){

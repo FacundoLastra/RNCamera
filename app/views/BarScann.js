@@ -4,22 +4,8 @@ import { RNCamera } from 'react-native-camera';
 import { connect } from 'react-redux';
 import { changeType, changeFlash, changeWhiteBalance, changeAutoFocus, changeZoom, startRecording, endRecording } from '../actions/cameraSettingsActions'
 import CameraBottons from '../components/CameraBottons'
+import { flashModeOrder, wbOrder } from '../utils/cameraConst' 
 
-const flashModeOrder = {
-  off: 'on',
-  on: 'auto',
-  auto: 'torch',
-  torch: 'off',
-};
-
-const wbOrder = {
-  auto: 'sunny',
-  sunny: 'cloudy',
-  cloudy: 'shadow',
-  shadow: 'fluorescent',
-  fluorescent: 'incandescent',
-  incandescent: 'auto',
-};
 class BarScann extends React.Component {
   constructor(props){
     super(props)
@@ -134,8 +120,6 @@ class BarScann extends React.Component {
           onZoomOut = {this.zoomOut}
           onZoomIn = {this.zoomIn}
           onFocus = {this.toggleFocus}
-          onTakePicture = {this.takePicture}
-          onTakeVideo = {this.takeVideo}
           cameraSettings = {this.props.cameraSettings}  
           displayCaptureBottoms = {false}
         />
