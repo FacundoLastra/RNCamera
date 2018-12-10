@@ -6,7 +6,7 @@ import MyListVideo from '../components/MyListVideo'
 
 //import Icon from 'react-native-vector-icons/EvilIcons'
 import Icon from 'react-native-vector-icons/FontAwesome';
-const myIcon = (<Icon name="image" size={30} color="#900" />)
+
 
 
  class Gallery extends React.Component {
