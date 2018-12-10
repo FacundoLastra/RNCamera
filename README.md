@@ -8,12 +8,13 @@ this app use [React Native](https://facebook.github.io/react-native/), [React](h
 
 
 ## Steps to Start
-     For now, only for android:
+     For now, only for android, Please use a physical phone, do not use an emulator:
+
 - Folow the react native tutorial to setUp the envarioment [React Tutorial](https://facebook.github.io/react-native/docs/getting-started) in the  "Building Projects with Native Code" section
 - Go to the proyect folder and type npm install
 - In another console connect your device on the PC and type in the console adb devices
 - type adb -s [device name] reverse tcp:8097 tcp:8097 
-- in the proyect folder type:react-native run-android
+- in the proyect folder type: react-native run-android
 
 
 ### To consider

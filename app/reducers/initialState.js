@@ -20,12 +20,4 @@ const initialStatePhotosandVideos = {
     photos: [],
     videos: []
 }
-const initialStateFaces = {
-    faces: []
-}
-
-const initialStateBarScanned = {
-    barScanned: []
-}
-
- export { initialStateCameraSettings, initialStatePhotosandVideos, initialStateFaces, initialStateBarScanned };
+ export { initialStateCameraSettings, initialStatePhotosandVideos };
