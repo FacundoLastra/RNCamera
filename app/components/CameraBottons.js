@@ -1,12 +1,9 @@
-import React,{Component} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Slider, Image } from 'react-native';
+import React,{ Component } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Foundation';
 import FlipIcon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-function isObject (value) {
-    return value && typeof value === 'object' && value.constructor === Object;
-}
+import { isObject } from '../utils/objectUtilis'
 
 export default class CameraBottons extends React.Component {
     constructor(props){
@@ -21,33 +18,43 @@ export default class CameraBottons extends React.Component {
         this.handleTakeVideo = this.handleTakeVideo.bind(this);
         this.handleGoToGallery = this.handleGoToGallery.bind(this);
     }
+
     handleFlip() {
         this.props.onFlip()
     }
+
     handleFlash() {
         this.props.onFlash()
     }
+    
     handleWB() {
         this.props.onWhiteBalance()
     }
+
     handleZoomOut() {
         this.props.onZoomOut()
     }
+
     handleZoomIn() {
         this.props.onZoomIn()
     }
+
     handleFocus() {
         this.props.onFocus()
     }
+
     handleTakePicture() {
         this.props.onTakePicture()
     }
+
     handleTakeVideo() {
         this.props.onTakeVideo()
     }
+
     handleGoToGallery(){
         this.props.onGoToGallery()
     }
+
     render() {
         let photoBotton = <View />
         let videoBotton = <View />
@@ -90,12 +97,7 @@ export default class CameraBottons extends React.Component {
         return(
             <View style={styles.container}>
                 <View
-                style={{
-                    flex: 0.5,
-                    backgroundColor: 'transparent',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                }}
+                style={styles.topBottonsContainer}
                 >
                     <TouchableOpacity style={styles.flipButton} onPress={this.handleFlip}>
                         <FlipIcon name="ios-reverse-camera" size={40} color="#ffffff" />
@@ -109,24 +111,8 @@ export default class CameraBottons extends React.Component {
                         <Text style={styles.flipText}> {this.props.cameraSettings.whiteBalance} </Text>
                     </TouchableOpacity>
                 </View>
-                <View
-                style={{
-                    flex: 0.3,
-                    backgroundColor: 'transparent',
-                    flexDirection: 'row',
-                    alignSelf: 'flex-end',
-                }}
-                >
-                </View>
-                <View
-                    style={{
-                        flex: 0.2,
-                        backgroundColor: 'transparent',
-                        flexDirection: 'row',
-                        alignSelf: 'flex-end',
-                    }}
-                >
-                   
+                <View style={styles.spaceBetweenViews} ></View>
+                <View style={styles.bottonButtonsContainer} >                   
                     <TouchableOpacity
                         style={[styles.flipButton, { flex: 0.1, alignSelf: 'flex-end', justifyContent: 'flex-start' }]}
                         onPress={this.handleZoomIn}
@@ -164,6 +150,24 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 10,
       backgroundColor: 'transparent'
+    },
+    topBottonsContainer: {
+      flex: 0.5,
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      justifyContent: 'space-around'
+    },
+    spaceBetweenViews:{
+      flex: 0.3,
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      alignSelf: 'flex-end'
+    },
+    bottonButtonsContainer:{
+      flex: 0.2,
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      alignSelf: 'flex-end',    
     },
     navigation: {
       flex: 1,

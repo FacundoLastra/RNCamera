@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, FlatList, TouchableOpacity, Text} from 'react-native';
 import { connect } from 'react-redux';
 import MyListPhoto from '../components/MyListPhoto'
 import MyListVideo from '../components/MyListVideo'
@@ -44,9 +44,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
                         renderItem={this.renderItemImages}
                      />
         }else{
-            listView = <MyListVideo    ///bug using flatList and ScrolView
-                        video = {this.props.videos[0].video}
-                        />   
+            if(this.props.videos.length > 0 ){
+                listView = <MyListVideo    ///bug using flatList and ScrolView
+                                video = {this.props.videos[0].video}
+                            />
+            }else{
+                listView = <View style={{flex:1, justifyContent:'center',alignItems:'center'}}>
+                                <Text>Sorry you don't have videos</Text>
+                           </View>
+            }   
         }
         return (
             <View style={styles.container}>

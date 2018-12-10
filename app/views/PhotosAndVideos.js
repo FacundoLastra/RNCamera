@@ -22,7 +22,6 @@ class PhotosAndVideos extends React.Component {
     this.takePicture = this.takePicture.bind(this)
     this.takeVideo = this.takeVideo.bind(this)
     this.goToGallery = this.goToGallery.bind(this)
-
   }
   
   
@@ -91,7 +90,7 @@ class PhotosAndVideos extends React.Component {
   goToGallery() {
     this.props.navigation.navigate('Gallery')
   }
-  
+
 
   renderCamera() { 
     return (
